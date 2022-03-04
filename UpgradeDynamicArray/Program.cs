@@ -10,10 +10,11 @@ namespace UpgradeDynamicArray
     {
         static void Main(string[] args)
         {
+            const string SumCommand = "sum";
+            const string ExitCommand = "exit";
+
             List<int> numbers = new List<int>();
             string userInput;
-            string sumCommand = "sum";
-            string exitCommand = "exit";
             int sumNumbers = 0;
             bool isOpen = true;
 
@@ -25,21 +26,20 @@ namespace UpgradeDynamicArray
                                   "\nПродолжить - enter");
                 userInput = Console.ReadLine();
 
-                if (userInput.Equals(sumCommand) || userInput.Equals(exitCommand))
+                switch (userInput)
                 {
-                    if (userInput.Equals(sumCommand))
+                    case SumCommand:
                         SumNumbers(ref numbers, ref sumNumbers);
-
-                    if (userInput.Equals(exitCommand))
+                        break;
+                    case ExitCommand:
                         isOpen = ExitProgram();
-                }
-                else
-                {
-                    numbers.Add(GetNumber());
-                    Console.Clear();
+                        break;
+                    default:
+                        numbers.Add(GetNumber());
+                        Console.Clear();
+                        break;
                 }
             }
-
         }
 
         static int GetNumber()
