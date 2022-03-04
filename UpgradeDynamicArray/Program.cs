@@ -19,21 +19,25 @@ namespace UpgradeDynamicArray
 
             while (isOpen == true)
             {
-                numbers.Add(GetNumber());
-
                 Console.Clear();
                 Console.WriteLine("Найти сумму - sum" +
                                   "\nВыйти - exit" +
                                   "\nПродолжить - enter");
                 userInput = Console.ReadLine();
 
-                if (userInput.Equals(sumCommand))
-                    SumNumbers(ref numbers, ref sumNumbers);
+                if (userInput.Equals(sumCommand) || userInput.Equals(exitCommand))
+                {
+                    if (userInput.Equals(sumCommand))
+                        SumNumbers(ref numbers, ref sumNumbers);
 
-                if (userInput.Equals(exitCommand))
-                    isOpen = ExitProgram();
-
-                Console.Clear();
+                    if (userInput.Equals(exitCommand))
+                        isOpen = ExitProgram();
+                }
+                else
+                {
+                    numbers.Add(GetNumber());
+                    Console.Clear();
+                }
             }
 
         }
