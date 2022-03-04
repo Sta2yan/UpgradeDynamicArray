@@ -35,23 +35,21 @@ namespace UpgradeDynamicArray
                         isOpen = ExitProgram();
                         break;
                     default:
-                        numbers.Add(GetNumber());
-                        Console.Clear();
+                        numbers.Add(GetNumber(userInput));
                         break;
                 }
             }
         }
 
-        static int GetNumber()
+        static int GetNumber(string numberText)
         {
             int number;
-            string numberText;
 
-            do
+            if (int.TryParse(numberText, out number) == false)
             {
-                Console.WriteLine("Введите число, которое хотите добавить:");
-                numberText = Console.ReadLine();
-            } while (int.TryParse(numberText, out number) == false);
+                Console.WriteLine("Введено не число");
+                Console.ReadKey(true);
+            }
 
             return number;
         }
